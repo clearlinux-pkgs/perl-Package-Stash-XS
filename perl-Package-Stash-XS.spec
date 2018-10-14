@@ -4,14 +4,15 @@
 #
 Name     : perl-Package-Stash-XS
 Version  : 0.28
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/D/DO/DOY/Package-Stash-XS-0.28.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DO/DOY/Package-Stash-XS-0.28.tar.gz
 Summary  : 'faster and more correct implementation of the Package::Stash API'
 Group    : Development/Tools
-License  : Artistic-1.0-Perl
-Requires: perl-Package-Stash-XS-lib
-Requires: perl-Package-Stash-XS-man
+License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
+Requires: perl-Package-Stash-XS-lib = %{version}-%{release}
+Requires: perl-Package-Stash-XS-license = %{version}-%{release}
+BuildRequires : buildreq-cpan
 BuildRequires : perl(Test::Fatal)
 BuildRequires : perl(Test::Requires)
 BuildRequires : perl(Try::Tiny)
@@ -21,20 +22,31 @@ This archive contains the distribution Package-Stash-XS,
 version 0.28:
 faster and more correct implementation of the Package::Stash API
 
+%package dev
+Summary: dev components for the perl-Package-Stash-XS package.
+Group: Development
+Requires: perl-Package-Stash-XS-lib = %{version}-%{release}
+Provides: perl-Package-Stash-XS-devel = %{version}-%{release}
+
+%description dev
+dev components for the perl-Package-Stash-XS package.
+
+
 %package lib
 Summary: lib components for the perl-Package-Stash-XS package.
 Group: Libraries
+Requires: perl-Package-Stash-XS-license = %{version}-%{release}
 
 %description lib
 lib components for the perl-Package-Stash-XS package.
 
 
-%package man
-Summary: man components for the perl-Package-Stash-XS package.
+%package license
+Summary: license components for the perl-Package-Stash-XS package.
 Group: Default
 
-%description man
-man components for the perl-Package-Stash-XS package.
+%description license
+license components for the perl-Package-Stash-XS package.
 
 
 %prep
@@ -62,10 +74,12 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-Package-Stash-XS
+cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Package-Stash-XS/LICENSE
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -74,12 +88,16 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/Package/Stash/XS.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/Package/Stash/XS.pm
+
+%files dev
+%defattr(-,root,root,-)
+/usr/share/man/man3/Package::Stash::XS.3
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/auto/Package/Stash/XS/XS.so
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/auto/Package/Stash/XS/XS.so
 
-%files man
-%defattr(-,root,root,-)
-/usr/share/man/man3/Package::Stash::XS.3
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-Package-Stash-XS/LICENSE
