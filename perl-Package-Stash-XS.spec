@@ -4,7 +4,7 @@
 #
 Name     : perl-Package-Stash-XS
 Version  : 0.28
-Release  : 2
+Release  : 3
 URL      : https://cpan.metacpan.org/authors/id/D/DO/DOY/Package-Stash-XS-0.28.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DO/DOY/Package-Stash-XS-0.28.tar.gz
 Summary  : 'faster and more correct implementation of the Package::Stash API'
