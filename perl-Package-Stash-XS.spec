@@ -4,7 +4,7 @@
 #
 Name     : perl-Package-Stash-XS
 Version  : 0.29
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/E/ET/ETHER/Package-Stash-XS-0.29.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/E/ET/ETHER/Package-Stash-XS-0.29.tar.gz
 Summary  : 'faster and more correct implementation of the Package::Stash API'
@@ -100,5 +100,5 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/Package/Stash/XS.pm
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/auto/Package/Stash/XS/XS.so
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/Package/Stash/XS.pm
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/auto/Package/Stash/XS/XS.so
