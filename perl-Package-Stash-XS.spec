@@ -4,7 +4,7 @@
 #
 Name     : perl-Package-Stash-XS
 Version  : 0.30
-Release  : 20
+Release  : 21
 URL      : https://cpan.metacpan.org/authors/id/E/ET/ETHER/Package-Stash-XS-0.30.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/E/ET/ETHER/Package-Stash-XS-0.30.tar.gz
 Summary  : 'Faster and more correct implementation of the Package::Stash API'
